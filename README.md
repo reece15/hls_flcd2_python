@@ -14,7 +14,7 @@
 - main.py  命令行测试获取数据
 - ui/window.py  界面展示点云数据
 
-## ROS平台 非python
+## ROS平台 以及 其他参考资料
 
 - 参考 <a href="http://javabin.cn/2018/hls_flcd2.html">调试使用HLS-LFCD2激光雷达</a>
 
