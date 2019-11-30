@@ -1,20 +1,22 @@
 # coding:utf-8
 
-import pygame,sys
+import pygame
+import sys
 import Laser
 import math
+import config
 
 
-laser = Laser.Laser(com="COM3")
+laser = Laser.Laser(com=config.PORT)
 
 pygame.init()
-screen=pygame.display.set_caption('laser data view')
-screen=pygame.display.set_mode([800,800])
-screen.fill([0,0,0])
+screen = pygame.display.set_caption('laser data view')
+screen = pygame.display.set_mode([800, 800])
+screen.fill([0, 0, 0])
 
-x1 = y1=400
+x1 = y1 = 400
 
-pygame.draw.circle(screen,[255, 0, 0],[x1,y1],2,0)
+
 pygame.display.flip()
 
 laser.start()
@@ -34,11 +36,14 @@ while True:
         x2 = x1 + length * 100 * math.cos(d)  # 极坐标系转换到直角坐标系
         y2 = y1 + length * 100 * math.sin(d)
 
-        i = intensity/1000   # 处理反射强度
+        i = intensity / 1000   # 处理反射强度
         if i > 1:
             i = 1
-        pygame.draw.circle(screen, [int(255 * i), 0, 0], [int(x2), int(y2)], 2, 0)
+        pygame.draw.circle(
+            screen, [int(255 * i), 0, 0], [int(x2), int(y2)], 2, 0)
+        # pygame.draw.line(screen, [int(255 * i), 0, 0], [int(x1), int(y1)], [int(x2), int(y2)], 2)
 
-        pygame.display.set_caption(u'laser data view 转速: {:.2f}r/min  平均转速:{:.2f}r/min'.format(rpm, laser.avr_rpm))
-
+        pygame.display.set_caption(
+            u'laser data view 转速: {:.2f}r/min  平均转速:{:.2f}r/min'.format(rpm, laser.avr_rpm))
+    pygame.draw.circle(screen, [255, 255, 255], [x1, y1], 2, 0)
     pygame.display.flip()
